@@ -1,22 +1,22 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/prop-types */
 import { useRef } from 'react';
 import Card from '../ui/Card';
 import classes from './NewPostForm.module.css';
 
-function NewPostForm()
-{
+function NewPostForm(props) {
     const titleInputRef = useRef();
     const imageInputRef = useRef();
     const nameInputRef = useRef();
     const descriptionInputRef = useRef();
 
-    function submitHandler(event)
-    {
+    function submitHandler(event) {
         event.preventDefault();
 
-        const enteredTitle  = titleInputRef.current.value;
-        const enteredImage  = imageInputRef.current.value;
-        const enteredName  = nameInputRef.current.value;
-        const enteredDescription  = descriptionInputRef.current.value;
+        const enteredTitle = titleInputRef.current.value;
+        const enteredImage = imageInputRef.current.value;
+        const enteredName = nameInputRef.current.value;
+        const enteredDescription = descriptionInputRef.current.value;
 
         const postData = {
             title: enteredTitle,
@@ -25,10 +25,10 @@ function NewPostForm()
             description: enteredDescription
         };
 
-        console.log(postData);
+        props.onAddPost(postData);
     }
 
-    return(
+    return (
         <Card>
             <form className={classes.form} onSubmit={submitHandler}>
                 <div className={classes.control}>
@@ -48,7 +48,7 @@ function NewPostForm()
                     <textarea placeholder='Enter Post Description' rows='5' id='description' ref={descriptionInputRef} required autoComplete='off'></textarea>
                 </div>
                 <div className={classes.actions}>
-                <button type='button'>Share post</button>
+                    <button type='submit'>Share post</button>
                 </div>
             </form>
         </Card>
