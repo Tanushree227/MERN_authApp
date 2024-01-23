@@ -15,8 +15,7 @@ function Header()
         //     </div>
         // </div>
         <header className={classes.header}>
-            <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
-            <h1 className={classes.logo}>EchoHub</h1>
+            <div className={classes.logo}>EchoHub</div>
             <nav>
                 <ul>
                     <Link to='/'><li className="text-2xl">Home</li></Link>
@@ -24,7 +23,7 @@ function Header()
                     <Link to='/sign-in'><li className="text-2xl">Sign-In</li></Link>
                 </ul>
             </nav>
-        </div>
+        
         </header>
 
     );

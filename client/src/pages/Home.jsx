@@ -1,3 +1,5 @@
+import PostsList from "../components/posts/PostsLists";
+
 const DUMMY_DATA = [
     { 
         id: 's1',
@@ -26,11 +28,7 @@ function Home() {
     return(
         <section>
             <h1>All Posts</h1>
-            <ul>
-            {DUMMY_DATA.map((posts) => {
-                return <li key={posts.id}>{posts.title}</li>
-            })}
-            </ul>
+            <PostsList posts={DUMMY_DATA} />
         </section>
     )
 }
