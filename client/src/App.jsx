@@ -5,6 +5,8 @@ import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Layout from './components/layout/Layout';
+import NewPost from './pages/NewPost';
+import Favorites from './pages/Favorites';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path='/favorites' element={<Favorites />} />
+        <Route path='/new-post' element={<NewPost />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
