@@ -1,7 +1,32 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { useContext, useState, useEffect } from "react";
 import Card from "../ui/Card";
 import classes from "./PostItem.module.css";
+import FavoritesContext from '../../store/favorites-context';
 
 function PostItem(props) {
+  const favoritesCtx = useContext(FavoritesContext);
+  const [itemIsFavorite, setItemIsFavorite] = useState(favoritesCtx.itemIsFavorite(props.id));
+
+  useEffect(() => {
+    setItemIsFavorite(favoritesCtx.itemIsFavorite(props.id));
+  }, [favoritesCtx, props.id]);
+
+  function toggleFavoritesStatusHandler() {
+    if (itemIsFavorite) {
+      favoritesCtx.removeFavorite(props.id);
+    } else {
+      favoritesCtx.addFavorite({
+        id: props.id,
+        title: props.title,
+        name: props.name,
+        description: props.description,
+        image: props.image,
+      });
+    }
+  }
+
   return (
     <li className={classes.item}>
       <Card>
@@ -15,9 +40,9 @@ function PostItem(props) {
           </p>
           <p>{props.description}</p>
         </div>
-        <div className={classes.actions}>
-          <button>🤍</button>
-        </div>
+        {/* <div className={classes.actions}>
+          <button onClick={toggleFavoritesStatusHandler}>{itemIsFavorite ? 'Unlike' : 'Like'}</button>
+        </div> */}
       </Card>
     </li>
   );
