@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import PostItem from "./PostItem";
 import classes from "./PostList.module.css";
 

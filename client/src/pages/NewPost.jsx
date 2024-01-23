@@ -2,7 +2,7 @@ import NewPostForm from "../components/posts/NewPostForm";
 import { useNavigate } from 'react-router-dom';
 
 function NewPost() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function addPostHandler(postData) {
     fetch("https://mern-authapp-6f833-default-rtdb.firebaseio.com/posts.json", {
@@ -11,9 +11,10 @@ function NewPost() {
       headers: {
         "Content-type": "application/json",
       },
-    }.then(() => {
-        navigate('/');
-    }));
+    })
+    .then(() => {
+      navigate('/');
+    })
   }
 
   return (
