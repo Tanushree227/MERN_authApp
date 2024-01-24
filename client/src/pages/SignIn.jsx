@@ -39,7 +39,7 @@ function SignIn() {
           return;
         }
         dispatch(signInSuccess(data));
-        navigate('/')
+        navigate('/');
       } catch (error) {
         dispatch(signInFailure(error));
       }
