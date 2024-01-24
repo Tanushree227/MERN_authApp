@@ -31,6 +31,10 @@
     font-size: 1.5rem;
     color: #fdf0d5;
   }
+  .header img
+  {
+    margin-left: 3rem;
+  }
   
   .header a:hover,
   .header a:active,

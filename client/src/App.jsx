@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Layout from './components/layout/Layout';
 import NewPost from './pages/NewPost';
 import Favorites from './pages/Favorites';
+import PrivateRoute from './components/layout/PrivateRoute';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/new-post' element={<NewPost />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/profile' element={<Profile />} />
+        </Route>
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>
