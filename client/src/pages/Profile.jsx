@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
-import { updateUserFailure, updateUserStart, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess } from "../redux/user/userSlice";
+import { updateUserFailure, updateUserStart, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOut } from "../redux/user/userSlice";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -95,6 +95,14 @@ function Profile() {
       dispatch(deleteUserFailure(error))
     }
   }
+  const handleSignout = async () => {
+    try {
+      await fetch('/api/auth/signout');
+      dispatch(signOut());
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Card>
@@ -168,7 +176,7 @@ function Profile() {
         </form>
         <div className="flex justify-between mt-5">
           <span onClick={handleDeleteAccount} className="text-red-700 cursor-pointer">Delete Account</span>
-          <span className="text-red-700 cursor-pointer">Sign Out</span>
+          <span onClick={handleSignout} className="text-red-700 cursor-pointer">Sign Out</span>
         </div>
         <p className="text-red-700 mt-5">{error && "Soemthing went Wrong!"}</p>
         <p className="text-green-700 mt-5">{updateSuccess && "User Data is updated Successfully"}</p>
