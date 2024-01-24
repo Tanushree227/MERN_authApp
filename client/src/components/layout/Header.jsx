@@ -23,7 +23,7 @@ function Header()
                     <Link to='/'><li className="text-2xl">Home</li></Link>
                     <Link to='/about'><li className="text-2xl">About</li></Link>
                     <Link to='/profile'>{currentUser ? (
-                        <img className="h-7 w-7 rounded-full object-cover" src={currentUser.profilePicture} alt="Display Picture" />
+                        <img className="h-9 w-9 rounded-full object-cover" src={currentUser.profilePicture} alt="Display Picture" />
                     ) : (<li className="text-2xl">Sign-In</li>)}</Link>
                 </ul>
             </nav>
