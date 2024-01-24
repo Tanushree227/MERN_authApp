@@ -62,7 +62,7 @@ function Profile() {
             accept="image/*"
           />
           <img
-            src={currentUser.profilePicture}
+            src={formData.profilePicture || currentUser.profilePicture}
             className="h-24 w-24 mt-2 self-center cursor-pointer rounded-full object-cover"
             alt="display picture"
             onClick={() => filePickerRef.current.click()}
