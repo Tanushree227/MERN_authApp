@@ -4,9 +4,9 @@ import Card from "../components/ui/Card";
 function About() {
   return (
     <Card>
-      <div className="text-center p-5">
-      <h1 className="text-center">About EchoHub</h1>
-      <p>
+      <div className="text-center p-5 px-4 py-12 max-w-2xl mx-auto">
+      <h1 className="text-center font-bold">About EchoHub</h1>
+      <p className="mb-4">
         EchoHub is a dynamic and user-centric platform designed to foster a
         global community where individuals can share their diverse experiences
         and insights with a wide audience. Users on EchoHub have the opportunity
