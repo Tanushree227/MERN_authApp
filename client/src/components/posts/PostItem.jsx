@@ -40,9 +40,9 @@ function PostItem(props) {
           </p>
           <p>{props.description}</p>
         </div>
-        {/* <div className={classes.actions}>
-          <button onClick={toggleFavoritesStatusHandler}>{itemIsFavorite ? 'Unlike' : 'Like'}</button>
-        </div> */}
+        {<div className={classes.actions}>
+          <button onClick={toggleFavoritesStatusHandler}>{itemIsFavorite ? 'Remove from Wishlist' : 'Add to Wishlist'}</button>
+        </div>}
       </Card>
     </li>
   );

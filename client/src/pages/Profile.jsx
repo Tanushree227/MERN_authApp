@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
 import { updateUserFailure, updateUserStart, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOut } from "../redux/user/userSlice";
+import { FavoritesContextProvider } from "../store/favorites-context";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -169,9 +170,11 @@ function Profile() {
             <button className="h-10 uppercase text-zinc-50 w-52 hover:opacity-75 rounded-md m-5 bg-lime-800">
               <Link to="/new-post">Start a Post</Link>
             </button>
+            <FavoritesContextProvider>
             <button className="h-10 w-52 uppercase text-white hover:opacity-75 rounded-md m-5 bg-lime-800">
               <Link to="/favorites">Liked Posts</Link>
             </button>
+            </FavoritesContextProvider>
           </div>
         </form>
         <div className="flex justify-between mt-5">

@@ -16,18 +16,19 @@ function Header()
         //         </ul>
         //     </div>
         // </div>
-        <header className={classes.header}>
+        <header className="bg-green-800">
+        <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
             <div className={classes.logo}>EchoHub</div>
             <nav>
-                <ul>
-                    <Link to='/'><li className="text-2xl">Home</li></Link>
-                    <Link to='/about'><li className="text-2xl">About</li></Link>
+                <ul className="flex gap-4">
+                    <Link to='/'><li className="text-2xl text-white hover:text-yellow-200">Home</li></Link>
+                    <Link to='/about'><li className="text-2xl text-white hover:text-yellow-200">About</li></Link>
                     <Link to='/profile'>{currentUser ? (
                         <img className="h-9 w-9 rounded-full object-cover" src={currentUser.profilePicture} alt="Display Picture" />
-                    ) : (<li className="text-2xl">Sign-In</li>)}</Link>
+                    ) : (<li className="text-2xl text-white hover:text-yellow-200">Sign-In</li>)}</Link>
                 </ul>
             </nav>
-        
+            </div>
         </header>
 
     );
