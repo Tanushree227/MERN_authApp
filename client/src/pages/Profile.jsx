@@ -166,22 +166,21 @@ function Profile() {
           <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-80">
               {loading ? 'Loading...' : 'Update'}
           </button>
-          <div className="flex flex-row mx-20">
-            <button className="h-10 uppercase text-zinc-50 w-52 hover:opacity-75 rounded-md m-5 bg-lime-800">
+            <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-60">
               <Link to="/new-post">Start a Post</Link>
             </button>
             <FavoritesContextProvider>
-            <button className="h-10 w-52 uppercase text-white hover:opacity-75 rounded-md m-5 bg-lime-800">
+            <button className="bg-lime-800 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-60">
               <Link to="/favorites">Liked Posts</Link>
             </button>
             </FavoritesContextProvider>
-          </div>
+          
         </form>
         <div className="flex justify-between mt-5">
           <span onClick={handleDeleteAccount} className="text-red-700 cursor-pointer">Delete Account</span>
           <span onClick={handleSignout} className="text-red-700 cursor-pointer">Sign Out</span>
         </div>
-        <p className="text-red-700 mt-5">{error && "Soemthing went Wrong!"}</p>
+        <p className="text-red-700 mt-5">{error && "Something went Wrong!"}</p>
         <p className="text-green-700 mt-5">{updateSuccess && "User Data is updated Successfully"}</p>
       </div>
     </Card>

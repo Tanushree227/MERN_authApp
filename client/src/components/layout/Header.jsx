@@ -16,7 +16,7 @@ function Header()
         //         </ul>
         //     </div>
         // </div>
-        <header className="bg-green-800">
+        <header className="bg-green-800 sticky top-0">
         <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
             <div className={classes.logo}>EchoHub</div>
             <nav>
