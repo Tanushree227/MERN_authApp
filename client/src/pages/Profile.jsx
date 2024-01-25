@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import Card from "../components/ui/Card";
@@ -166,11 +167,11 @@ function Profile() {
           <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-80">
               {loading ? 'Loading...' : 'Update'}
           </button>
-            <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-60">
+            <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:bg-red-700 disabled:opacity-60">
               <Link to="/new-post">Start a Post</Link>
             </button>
             <FavoritesContextProvider>
-            <button className="bg-lime-800 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-60">
+            <button className="bg-lime-800 text-white p-3 rounded-lg uppercase hover:bg-red-800 disabled:opacity-60">
               <Link to="/favorites">Liked Posts</Link>
             </button>
             </FavoritesContextProvider>
