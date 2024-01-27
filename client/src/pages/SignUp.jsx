@@ -72,7 +72,7 @@ function SignUp() {
           placeholder="Password"
           onChange={handleChange}
         />
-        <button disabled={loading} className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-85 disabled:opacity-60">
+        <button disabled={loading} className="bg-green-800 text-white p-3 rounded-lg uppercase hover:opacity-85 disabled:opacity-60">
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
         <OAuth />
