@@ -34,7 +34,7 @@ function OAuth()
     }
 
     return(
-        <button type="button" onClick={handleGoogleClick} className="bg-teal-900 rounded-lg p-3 uppercase hover:opacity-80 text-white">Continue with Google</button>
+        <button type="button" onClick={handleGoogleClick} className="bg-red-700 rounded-lg p-3 uppercase hover:opacity-80 text-white"><i className="fi fi-brands-google p-3"></i>Continue with Google</button>
     );
 }
 
