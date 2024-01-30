@@ -181,8 +181,8 @@ function Profile() {
           <span onClick={handleDeleteAccount} className="text-red-700 cursor-pointer">Delete Account</span>
           <span onClick={handleSignout} className="text-red-700 cursor-pointer">Sign Out</span>
         </div>
-        <p className="text-red-700 mt-5">{error && "Something went Wrong!"}</p>
         <p className="text-green-700 mt-5">{updateSuccess && "User Data is updated Successfully"}</p>
+        <p className="text-red-700 mt-5">{error && "Something went Wrong!"}</p>
       </div>
     </Card>
   );
