@@ -25,8 +25,7 @@ const signup = async (req) => {
 
 describe("Testing for Signup Page", function () {
   // Test case 1: Test successful signup
-  it("should return true for a valid signup", async (done) => {
-    this.timeout(15000)
+  it("should return true for a valid signup", async () => {
     const result = await signup({
       body: {
         username: "annu2905",
@@ -36,7 +35,6 @@ describe("Testing for Signup Page", function () {
     });
 
     assert.isTrue(result);
-     done();
   });
 
   // Test case 2: Test unsuccessful signup
