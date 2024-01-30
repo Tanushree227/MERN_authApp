@@ -2,7 +2,8 @@ import * as chai from "chai";
 import bcryptjs from "bcryptjs";
 import User from "../api/models/user.model.js";
 import sinon from "sinon";
-import { signin } from "../api/controllers/auth.controller.js";
+import { signin, google } from "../api/controllers/auth.controller.js";
+import jwt from 'jsonwebtoken';
 
 const assert = chai.assert;
 const expect = chai.expect;
@@ -53,15 +54,14 @@ describe("Testing for Signin Page", () => {
   let sandbox;
 
   beforeEach(() => {
-    // Create a sandbox for easy cleanup
     sandbox = sinon.createSandbox();
   });
 
   afterEach(() => {
-    // Restore the sandbox to clean up stubs
     sandbox.restore();
   });
 
+  //Test Case 3: Signin with Valid Credentials
   it("should sign in a user with valid credentials", async () => {
     const findOneStub = sandbox.stub(User, "findOne").resolves({
       email: "thor3000@avengers.com",
@@ -77,26 +77,22 @@ describe("Testing for Signin Page", () => {
     };
     const next = sandbox.stub();
 
-    // Call the signin function
     await signin(
       { body: { email: "thor3000@avengers.com", password: "thor3000" } },
       res,
       next
     );
 
-    // Assertions
     assert.isTrue(findOneStub.calledOnce);
     assert.isTrue(bcryptjs.compareSync.calledOnce);
 
-    // Restore the stubs to their original implementations
     findOneStub.restore();
   });
 
+  //Test Case 4: Signin with invalid user
   it("should handle user not found", async () => {
-    // Stub the findOne method of the User model to return null
     const findOneStub = sandbox.stub(User, "findOne").resolves(null);
 
-    // Mock the response and next function
     const res = {
       cookie: sandbox.stub(),
       status: sandbox.stub().returnsThis(),
@@ -104,34 +100,29 @@ describe("Testing for Signin Page", () => {
     };
     const next = sandbox.stub();
 
-    // Call the signin function
     await signin(
       { body: { email: "avengers@example.com", password: "avengers" } },
       res,
       next
     );
 
-    // Assertions using Sinon assertions
     assert.isFalse(res.status.calledOnce);
     assert.isFalse(res.json.calledOnce);
     assert.isFalse(res.status.calledWith(404));
     assert.isFalse(res.json.calledWith({ error: "User not found" }));
 
-    // Restore the stubs to their original implementations
     findOneStub.restore();
   });
 
+  //Test Case 5: Sign in with wrong Credentials
   it("should handle wrong credentials", async () => {
-    // Stub the findOne method of the User model to return a user
     const findOneStub = sandbox.stub(User, "findOne").resolves({
       email: "thor3000@example.com",
       password: bcryptjs.hashSync("thor3000", 10),
     });
 
-    // Stub the compareSync method of bcryptjs to return false for password comparison
     sandbox.stub(bcryptjs, "compareSync").returns(false);
 
-    // Mock the response and next function
     const res = {
       cookie: sandbox.stub(),
       status: sandbox.stub().returnsThis(),
@@ -139,20 +130,86 @@ describe("Testing for Signin Page", () => {
     };
     const next = sandbox.stub();
 
-    // Call the signin function
     await signin(
       { body: { email: "thor3000@avengers.com", password: "thor300" } },
       res,
       next
     );
 
-    // Assertions using Chai expect assertions
     expect(res.status.calledOnce).to.be.false;
     expect(res.json.calledOnce).to.be.false;
     expect(res.status.calledWith(401)).to.be.false;
     expect(res.json.calledWith({ error: "Wrong Credentials" })).to.be.false;
 
-    // Restore the stubs to their original implementations
+    findOneStub.restore();
+  });
+});
+
+describe('Testing for Google Authentication Component', () => {
+  let sandbox;
+
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+  });
+
+  // Test Case 6: Google Authentication with Valid User
+  it('should authenticate a user with valid Google credentials', async () => {
+    const findOneStub = sandbox.stub(User, 'findOne').resolves({
+      email: 'tanushreedas227@gmail.com',
+    });
+
+    sandbox.stub(bcryptjs, 'compareSync').returns(true);
+
+    sandbox.stub(jwt, 'sign').returns('dummyToken');
+
+    const res = {
+      cookie: sandbox.stub().returnsThis(),
+      status: sandbox.stub().returnsThis(),
+      json: sandbox.stub(),
+    };
+    const next = sandbox.stub();
+
+    await google(
+      { body: { email: 'tanushreedas227@gmail.com' } },
+      res,
+      next
+    );
+
+    assert.isTrue(findOneStub.calledOnce);
+
+    assert.isFalse(bcryptjs.compareSync.calledOnce);
+
+    assert.isTrue(jwt.sign.calledOnce);
+
+    findOneStub.restore();
+  });
+
+  // Test Case 7: Google Authentication with Invalid User
+  it('should handle Google authentication for an invalid user', async () => {
+    const findOneStub = sandbox.stub(User, 'findOne').resolves(null);
+
+    const res = {
+      status: sandbox.stub().returnsThis(),
+      json: sandbox.stub(),
+    };
+    const next = sandbox.stub();
+
+    await google(
+      { body: { email: 'invaliduser@gmail.com' } },
+      res,
+      next
+    );
+
+    assert.isFalse(res.status.calledOnce);
+    assert.isFalse(res.status.calledWith(404));
+
+    assert.isFalse(res.json.calledOnce);
+    assert.isFalse(res.json.calledWith({ error: 'User not found' }));
+
     findOneStub.restore();
   });
 });
