@@ -172,7 +172,7 @@ function Profile() {
             </button>
             <FavoritesContextProvider>
             <button className="bg-lime-800 text-white p-3 rounded-lg uppercase hover:bg-red-800 disabled:opacity-60">
-              <Link to="/favorites">Liked Posts</Link>
+              <Link to="/favorites">Go to Wishlist</Link>
             </button>
             </FavoritesContextProvider>
           
