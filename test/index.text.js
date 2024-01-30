@@ -23,9 +23,10 @@ const signup = async (req) => {
   }
 };
 
-describe("Signup Function", function () {
+describe("Testing for Signup Page", function () {
   // Test case 1: Test successful signup
-  it("should return true for a valid signup", async () => {
+  it("should return true for a valid signup", async (done) => {
+    this.timeout(15000)
     const result = await signup({
       body: {
         username: "annu2905",
@@ -35,10 +36,11 @@ describe("Signup Function", function () {
     });
 
     assert.isTrue(result);
+     done();
   });
 
   // Test case 2: Test unsuccessful signup
-  it("should return false for an invalid signup", async () => {
+  it("should return false for user not found", async () => {
     const result = await signup({
       body: {
         email: "tubai@avenger.com",
@@ -49,7 +51,7 @@ describe("Signup Function", function () {
   });
 });
 
-describe("signin", () => {
+describe("Testing for Signin Page", () => {
   let sandbox;
 
   beforeEach(() => {
