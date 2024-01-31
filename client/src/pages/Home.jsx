@@ -29,7 +29,7 @@ function Home() {
   if (isLoading) {
     return (
       <section>
-        <p>Loading....</p>
+        <p data-testid="loading">Loading....</p>
       </section>
     );
   }
@@ -37,7 +37,7 @@ function Home() {
   return (
     <section>
       <h1>All Posts</h1>
-      <PostsList posts={loadedPosts} />
+      <PostsList data-testid="post-item" posts={loadedPosts} />
     </section>
   );
 }

@@ -16,6 +16,7 @@ const signup = async (req) => {
     email,
     password: hashedPassword,
   });
+
   try {
     await newUser.save();
     return true;
