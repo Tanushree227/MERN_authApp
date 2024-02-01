@@ -23,6 +23,7 @@ function Header()
                 <ul className="flex gap-4">
                     <Link to='/'><li className="text-2xl text-white hover:text-yellow-200">Home</li></Link>
                     <Link to='/about'><li className="text-2xl text-white hover:text-yellow-200">About</li></Link>
+                    <Link to='/favorites'>{currentUser ? <li className="text-2xl text-white hover:text-yellow-200">Saved</li> : null}</Link>
                     <Link to='/profile'>{currentUser ? (
                         <img className="h-9 w-9 rounded-full object-cover" src={currentUser.profilePicture} alt="Display Picture" />
                     ) : (<li className="text-2xl text-white hover:text-yellow-200">Sign-In</li>)}</Link>

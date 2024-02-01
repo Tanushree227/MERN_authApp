@@ -16,7 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/favorites' element={<Favorites />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/favorites' element={<Favorites />} />
+        </Route>
         <Route path='/new-post' element={<NewPost />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
