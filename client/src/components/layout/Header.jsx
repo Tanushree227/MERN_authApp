@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import { useSelector } from 'react-redux';
+import { useContext } from "react";
+import FavoritesContext from "../../store/favorites-context";
 
 function Header()
 {
     const { currentUser } = useSelector(state => state.user);
+    const favoritesCtx = useContext(FavoritesContext);
     return(
         // <div className="bg-slate-200">
         //     <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
@@ -23,7 +26,7 @@ function Header()
                 <ul className="flex gap-4">
                     <Link to='/'><li className="text-2xl text-white hover:text-yellow-200">Home</li></Link>
                     <Link to='/about'><li className="text-2xl text-white hover:text-yellow-200">About</li></Link>
-                    <Link to='/favorites'>{currentUser ? <li className="text-2xl text-white hover:text-yellow-200">Saved</li> : null}</Link>
+                    <Link to='/favorites'>{currentUser ? <li className="text-2xl text-white hover:text-yellow-200">Saved<span className={classes.badge}>{favoritesCtx.totalFavorites}</span></li> : <span></span>}</Link>
                     <Link to='/profile'>{currentUser ? (
                         <img className="h-9 w-9 rounded-full object-cover" src={currentUser.profilePicture} alt="Display Picture" />
                     ) : (<li className="text-2xl text-white hover:text-yellow-200">Sign-In</li>)}</Link>
