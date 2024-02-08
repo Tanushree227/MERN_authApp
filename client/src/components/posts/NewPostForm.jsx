@@ -9,6 +9,7 @@ function NewPostForm(props) {
     const imageInputRef = useRef();
     const nameInputRef = useRef();
     const descriptionInputRef = useRef();
+    const categoryInputRef = useRef();
 
     function submitHandler(event) {
         event.preventDefault();
@@ -17,12 +18,14 @@ function NewPostForm(props) {
         const enteredImage = imageInputRef.current.value;
         const enteredName = nameInputRef.current.value;
         const enteredDescription = descriptionInputRef.current.value;
+        const enteredCategory = categoryInputRef.current.value;
 
         const postData = {
             title: enteredTitle,
             image: enteredImage,
             name: enteredName,
-            description: enteredDescription
+            description: enteredDescription,
+            category: enteredCategory
         };
 
         props.onAddPost(postData);
@@ -34,6 +37,10 @@ function NewPostForm(props) {
                 <div className={classes.control}>
                     <label htmlFor='title'>Post Title</label>
                     <input type="text" ref={titleInputRef} placeholder='Enter your Post Title' required autoComplete='off' id='title' />
+                </div>
+                <div className={classes.control}>
+                    <label htmlFor='category'>Post Category</label>
+                    <input type="text" ref={categoryInputRef} placeholder='Enter your Post Category' required autoComplete='off' id='category' />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor='image'>Post Image URL</label>

@@ -1,0 +1,23 @@
+.container
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.sortByContainer {
+    margin-bottom: 20px;
+  }
+  
+  .sortByContainer select {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .sortByContainer select:focus {
+    border-color: #007bff;
+  }
+  
