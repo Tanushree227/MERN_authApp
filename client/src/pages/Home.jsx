@@ -68,11 +68,11 @@ function Home() {
   return (
     <section>
       <h1>All Posts</h1>
-      <div className="text-justify p-5 px-4 py-10 max-w-2xl mx-auto">
+      <div className={classes.container}>
         <div className={classes.sortByContainer}>
           <h3>Sort By: </h3>
-          <select value={sortBy} onChange={handleSortChange}>
-            <option value="">Select one</option>
+          <select className="form-select" value={sortBy} onChange={handleSortChange}>
+            <option selected value="">Select one</option>
             <option value="title">Title</option>
             <option value="name">Name</option>
           </select>
@@ -80,8 +80,8 @@ function Home() {
 
         <div className={classes.sortByContainer}>
           <h3>Select Category: </h3>
-          <select value={selectedCategory} onChange={handleCategoryChange}>
-            <option value="">All Categories</option>
+          <select className="form-select" value={selectedCategory} onChange={handleCategoryChange}>
+            <option selected value="">All Categories</option>
             {categories.map((category, index) => (
               <option key={index} value={category}>
                 {category}
