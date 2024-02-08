@@ -70,7 +70,7 @@ function Home() {
       <h1>All Posts</h1>
       <div className={classes.container}>
         <div className={classes.sortByContainer}>
-          <div>Sort By: </div>
+          <h3>Sort By: </h3>
           <select value={sortBy} onChange={handleSortChange}>
             <option value="">Select one</option>
             <option value="title">Title</option>
