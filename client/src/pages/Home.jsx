@@ -68,7 +68,7 @@ function Home() {
   return (
     <section>
       <h1>All Posts</h1>
-      <div className={classes.container}>
+      <div className="text-justify p-5 px-4 py-10 max-w-2xl mx-auto">
         <div className={classes.sortByContainer}>
           <h3>Sort By: </h3>
           <select value={sortBy} onChange={handleSortChange}>
