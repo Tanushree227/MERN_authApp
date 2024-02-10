@@ -12,7 +12,15 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
-import { updateUserFailure, updateUserStart, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOut } from "../redux/user/userSlice";
+import {
+  updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  signOut,
+} from "../redux/user/userSlice";
 import { FavoritesContextProvider } from "../store/favorites-context";
 
 function Profile() {
@@ -56,20 +64,19 @@ function Profile() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if(data.success === false)
-      {
+      if (data.success === false) {
         dispatch(updateUserFailure(data));
         return;
       }
@@ -84,27 +91,26 @@ function Profile() {
     try {
       dispatch(deleteUserStart());
       const res = await fetch(`api/user/delete/${currentUser._id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       const data = await res.json();
-      if(data.success === false)
-      {
+      if (data.success === false) {
         dispatch(deleteUserFailure(data));
         return;
       }
       dispatch(deleteUserSuccess(data));
     } catch (error) {
-      dispatch(deleteUserFailure(error))
+      dispatch(deleteUserFailure(error));
     }
-  }
+  };
   const handleSignout = async () => {
     try {
-      await fetch('/api/auth/signout');
+      await fetch("/api/auth/signout");
       dispatch(signOut());
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <Card>
@@ -165,23 +171,34 @@ function Profile() {
             onChange={handleChange}
           />
           <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-75 disabled:opacity-80">
-              {loading ? 'Loading...' : 'Update'}
+            {loading ? "Loading..." : "Update"}
           </button>
-            <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:bg-red-700 disabled:opacity-60">
-              <Link to="/new-post">Start a Post</Link>
-            </button>
-            <FavoritesContextProvider>
+          <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:bg-red-700 disabled:opacity-60">
+            <Link to="/new-post">Start a Post</Link>
+          </button>
+          <FavoritesContextProvider>
             <button className="bg-lime-800 text-white p-3 rounded-lg uppercase hover:bg-red-800 disabled:opacity-60">
               <Link to="/favorites">Go to Wishlist</Link>
             </button>
-            </FavoritesContextProvider>
-          
+          </FavoritesContextProvider>
         </form>
         <div className="flex justify-between mt-5">
-          <span onClick={handleDeleteAccount} className="text-red-700 cursor-pointer">Delete Account</span>
-          <span onClick={handleSignout} className="text-red-700 cursor-pointer">Sign Out</span>
+          <span
+            onClick={handleDeleteAccount}
+            className="text-red-700 cursor-pointer"
+          >
+            Delete Account
+          </span>
+          <span
+            onClick={handleSignout}
+            className="text-red-700 cursor-pointer"
+          >
+            Sign Out
+          </span>
         </div>
-        <p className="text-green-700 mt-5">{updateSuccess && "User Data is updated Successfully"}</p>
+        <p className="text-green-700 mt-5">
+          {updateSuccess && "User Data is updated Successfully"}
+        </p>
         <p className="text-red-700 mt-5">{error && "Something went Wrong!"}</p>
       </div>
     </Card>
