@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -7,7 +6,7 @@ import PostsList from "../components/posts/PostsLists";
 function MyPosts() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPosts, setLoadedPosts] = useState([]);
-  const { currentUser, loading, error } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const userId = currentUser._id;
   let content;
 
