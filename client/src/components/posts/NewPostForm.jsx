@@ -1,10 +1,17 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useRef } from 'react';
 import Card from '../ui/Card';
 import classes from './NewPostForm.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import { signInSuccess } from '../../redux/user/userSlice';
 
 function NewPostForm(props) {
+
+    const dispatch = useDispatch();
+    const { currentUser, loading, error } = useSelector((state) => state.user);
+
     const titleInputRef = useRef();
     const imageInputRef = useRef();
     const nameInputRef = useRef();
@@ -25,7 +32,8 @@ function NewPostForm(props) {
             image: enteredImage,
             name: enteredName,
             description: enteredDescription,
-            category: enteredCategory
+            category: enteredCategory,
+            userid: currentUser._id
         };
 
         props.onAddPost(postData);
@@ -47,8 +55,8 @@ function NewPostForm(props) {
                     <input placeholder='Enter Post Image URL' autoComplete='off' type="url" ref={imageInputRef} required id='image' />
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor='name'>Full Name</label>
-                    <input type="text" autoComplete='off' placeholder='Enter your Full Name' ref={nameInputRef} required id='name' />
+                    <label htmlFor='name'>User Name</label>
+                    <input defaultValue={currentUser.username} type="text" autoComplete='off' placeholder='Enter your Full Name' ref={nameInputRef} required id='name' />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor='description'>Post Caption</label>

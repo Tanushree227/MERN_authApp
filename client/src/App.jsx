@@ -8,6 +8,7 @@ import Layout from './components/layout/Layout';
 import NewPost from './pages/NewPost';
 import Favorites from './pages/Favorites';
 import PrivateRoute from './components/layout/PrivateRoute';
+import MyPosts from './pages/MyPost';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route element={<PrivateRoute />}>
           <Route path='/favorites' element={<Favorites />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path='/my-posts' element={<MyPosts />} />
         </Route>
         <Route path='/new-post' element={<NewPost />} />
         <Route element={<PrivateRoute />}>

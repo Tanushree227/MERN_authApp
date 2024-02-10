@@ -176,6 +176,9 @@ function Profile() {
           <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:bg-red-700 disabled:opacity-60">
             <Link to="/new-post">Start a Post</Link>
           </button>
+          <button className="bg-lime-700 text-white p-3 rounded-lg uppercase hover:bg-red-700 disabled:opacity-60">
+            <Link to="/my-posts">My Posts</Link>
+          </button>
           <FavoritesContextProvider>
             <button className="bg-lime-800 text-white p-3 rounded-lg uppercase hover:bg-red-800 disabled:opacity-60">
               <Link to="/favorites">Go to Wishlist</Link>
