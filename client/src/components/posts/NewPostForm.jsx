@@ -1,16 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useRef } from 'react';
 import Card from '../ui/Card';
 import classes from './NewPostForm.module.css';
-import { useDispatch, useSelector } from "react-redux";
-import { signInSuccess } from '../../redux/user/userSlice';
+import { useSelector } from "react-redux";
 
 function NewPostForm(props) {
-
-    const dispatch = useDispatch();
-    const { currentUser, loading, error } = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
 
     const titleInputRef = useRef();
     const imageInputRef = useRef();
@@ -33,7 +28,6 @@ function NewPostForm(props) {
             name: enteredName,
             description: enteredDescription,
             category: enteredCategory,
-            userid: currentUser._id
         };
 
         props.onAddPost(postData);

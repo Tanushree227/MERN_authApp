@@ -7,7 +7,7 @@ function MyPosts() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPosts, setLoadedPosts] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
-  const userId = currentUser._id;
+  const userName = currentUser.username;
   let content;
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function MyPosts() {
             id: key,
             ...data[key],
           };
-          if (post.userid === userId) {
+          if (post.name === userName) {
             posts.push(post);
           }
         }
